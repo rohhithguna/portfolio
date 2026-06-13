@@ -45,7 +45,7 @@ Please do not deploy, redistribute, or reuse the portfolio's design, branding, a
 
 If you are building your own portfolio, please create your own branding, visual identity, layout, and design.
 
-© Aditya Pillai. All Rights Reserved.
+© Rohhith Gunasekaran. All Rights Reserved.
 
 ---
 

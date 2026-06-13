@@ -1,179 +1,236 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { CSSPlugin } from 'gsap/CSSPlugin';
-import SignatureSVG from '../assets/AP.svg?react';
+import { motion, AnimatePresence } from 'motion/react';
+import { useEffect, useState } from 'react';
+import RgSplash from '../assets/rg-splash.png';
 
-// Register GSAP plugin
-gsap.registerPlugin(CSSPlugin);
+const NUM_PARTICLES = 18;
+const SUBTITLES = [
+  'Cyber Security',
+  'Cloud Computing',
+  'Distributed Systems',
+  'Systems Engineering'
+];
 
-// Prevent double animation in StrictMode / remounts
-let _animationHasRun = false;
+const SplashLoader = ({ onAnimationComplete, theme }) => {
+  const [isVisible, setIsVisible] = useState(true);
+  const [subtitleIndex, setSubtitleIndex] = useState(0);
+  const [particles, setParticles] = useState([]);
+  const [progress, setProgress] = useState(0);
 
-const SplashLoader = ({ onAnimationComplete }) => {
-  const svgRef = useRef(null);
-  const containerRef = useRef(null);
+  const isDark = theme === 'dark';
 
   useEffect(() => {
-    // StrictMode remount guard
-    if (_animationHasRun) {
-      onAnimationComplete?.();
-      return;
-    }
+    // Generate minimal premium particles
+    const particleColors = isDark 
+      ? ['#3B82F6', '#6366F1', '#8B5CF6'] 
+      : ['#2563EB', '#4F46E5', '#7C3AED'];
+      
+    const generated = Array.from({ length: NUM_PARTICLES }).map((_, i) => ({
+      id: i,
+      x: (Math.random() - 0.5) * 100,
+      y: (Math.random() - 0.5) * 100,
+      color: particleColors[Math.floor(Math.random() * particleColors.length)],
+      size: Math.random() * 2 + 1,
+      duration: 20 + Math.random() * 25, // Extremely slow movement
+    }));
+    setParticles(generated);
 
-    _animationHasRun = true;
-
-    const svgElement = svgRef.current;
-    const container = containerRef.current;
-
-    if (!svgElement || !container) return;
-
-    // Prevent scrolling while splash is active
     document.body.style.overflow = 'hidden';
 
-    const paths = svgElement.querySelectorAll(
-      'path, line, polyline, circle, ellipse'
-    );
+    // Subtitle rotation
+    const subtitleTimeout = setTimeout(() => {
+      const subtitleInterval = setInterval(() => {
+        setSubtitleIndex(prev => (prev + 1) % SUBTITLES.length);
+      }, 1200);
+      return () => clearInterval(subtitleInterval);
+    }, 1200);
 
-    if (paths.length === 0) return;
+    // Progress bar simulation over 4 seconds
+    const startTime = Date.now();
+    const duration = 4000;
+    
+    const progressInterval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const newProgress = Math.min((elapsed / duration) * 100, 100);
+      setProgress(newProgress);
+      
+      if (newProgress >= 100) {
+        clearInterval(progressInterval);
+      }
+    }, 16); // ~60fps updates for smooth fill
 
-    // Initialize SVG paths
-    paths.forEach((path) => {
-      const length = path.getTotalLength?.();
-
-      if (!length || isNaN(length)) return;
-
-      path.removeAttribute('fill');
-      path.removeAttribute('stroke');
-      path.removeAttribute('stroke-width');
-      path.removeAttribute('stroke-dasharray');
-      path.removeAttribute('stroke-dashoffset');
-
-      gsap.set(path, {
-        strokeDasharray: length,
-        strokeDashoffset: length,
-        strokeLinecap: 'round',
-        strokeLinejoin: 'round',
-        fill: 'none',
-        stroke: '#b8f2e6',
-        strokeWidth: 1,
-      });
-    });
-
-    // Remove fills from groups
-    svgElement.querySelectorAll('g').forEach((g) => {
-      g.removeAttribute('fill');
-      g.style.fill = 'none';
-    });
-
-    // Main animation timeline
-    const tl = gsap.timeline({
-      onComplete: () => {
-        gsap.to(container, {
-          opacity: 0,
-          duration: 0.6,
-          ease: 'power2.inOut',
-
-          onComplete: () => {
-            document.body.style.overflow = '';
-
-            onAnimationComplete?.();
-          },
-        });
-      },
-    });
-
-    // Signature drawing animation
-    tl.to(paths, {
-      strokeDashoffset: 0,
-      duration: 2.5,
-      ease: 'power2.inOut',
-
-      stagger: {
-        each: 0.15,
-        ease: 'power1.inOut',
-      },
-    })
-
-      // Glow effect
-      .to(
-        paths,
-        {
-          filter:
-            'drop-shadow(0 0 8px rgba(184, 242, 230, 0.6))',
-          duration: 0.4,
-          ease: 'power2.out',
-        },
-        '-=0.5'
-      )
-
-      // Small hold before fade
-      .to({}, { duration: 0.8 });
+    // Sequence timing
+    const readyTimer = setTimeout(() => {
+      setIsVisible(false);
+    }, 4500); // Wait 4.5s total to allow progress bar to reach 100% and dwell slightly
 
     return () => {
+      clearTimeout(subtitleTimeout);
+      clearTimeout(readyTimer);
+      clearInterval(progressInterval);
       document.body.style.overflow = '';
-
-      tl.kill();
     };
-  }, []);
+  }, [isDark]);
+
+  const handleExitComplete = () => {
+    document.body.style.overflow = '';
+    onAnimationComplete?.();
+  };
+
+  const containerVariants = {
+    initial: { opacity: 1, filter: "blur(0px)" },
+    animate: { opacity: 1, filter: "blur(0px)" },
+    exit: { 
+      opacity: 0, 
+      filter: "blur(12px)",
+      transition: { duration: 0.9, ease: "easeInOut", when: "beforeChildren" } 
+    }
+  };
+
+  const imageVariants = {
+    initial: { opacity: 0, scale: 1.1 }, // Start slightly zoomed in
+    animate: { 
+      opacity: 1, 
+      scale: [1.1, 1, 1.05, 1], // Entrance, then breathing
+      transition: { 
+        opacity: { duration: 1.2, ease: "easeOut" },
+        scale: { 
+          times: [0, 0.23, 0.615, 1], // Map 1.2s entrance to total duration
+          duration: 5.2, // 1.2s entrance + 4s breathing cycle
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "loop"
+        } 
+      }
+    },
+    exit: { 
+      scale: 1.15, 
+      opacity: 0,
+      transition: { duration: 0.9, ease: "easeInOut" } 
+    }
+  };
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        position: 'fixed',
-        inset: 0,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#1c1c1c',
-        zIndex: 100000,
-        opacity: 1,
-      }}
-    >
-      {/* Animated glow background */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '400px',
-          height: '400px',
-          background:
-            'radial-gradient(circle, rgba(184, 242, 230, 0.1) 0%, transparent 70%)',
-          animation: 'pulse 3s ease-in-out infinite',
-          pointerEvents: 'none',
-        }}
-      />
+    <AnimatePresence onExitComplete={handleExitComplete}>
+      {isVisible && (
+        <motion.div
+          variants={containerVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          className="fixed inset-0 flex flex-col justify-center items-center z-[100000] overflow-hidden"
+          style={{
+            backgroundColor: isDark ? '#020617' : '#F8FAFC',
+          }}
+        >
+          {/* Full-Screen Image Background */}
+          <div className="absolute inset-0 w-full h-full overflow-hidden">
+            <motion.img
+              src={RgSplash}
+              alt="Rohhith Gunasekaran Cover"
+              variants={imageVariants}
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
+          </div>
 
-      {/* Signature SVG */}
-      <SignatureSVG
-        ref={svgRef}
-        style={{
-          width: '320px',
-          height: 'auto',
-          stroke: '#b8f2e6',
-          fill: 'none',
-          strokeWidth: 1,
-          position: 'relative',
-          zIndex: 1,
-        }}
-      />
+          {/* Subtle animated radial gradient background over image */}
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.1, 1],
+              opacity: [0.05, 0.08, 0.05]
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-0 pointer-events-none mix-blend-overlay"
+            style={{
+              background: isDark 
+                ? 'radial-gradient(circle at center, #1E3A8A 0%, transparent 70%)'
+                : 'radial-gradient(circle at center, #60A5FA 0%, transparent 70%)',
+            }}
+          />
 
-      <style>{`
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 0.3;
-            transform: translate(-50%, -50%) scale(1);
-          }
+          {/* Ambient Particles */}
+          <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-10">
+            {particles.map((p) => (
+              <motion.div
+                key={p.id}
+                initial={{ x: `${p.x}vw`, y: `${p.y}vh`, opacity: 0 }}
+                animate={{ 
+                  x: `${p.x + (Math.random() - 0.5) * 8}vw`, 
+                  y: `${p.y + (Math.random() - 0.5) * 8}vh`, 
+                  opacity: [0, 0.5, 0] 
+                }}
+                transition={{ 
+                  duration: p.duration, 
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: Math.random() * 2
+                }}
+                style={{
+                  position: 'absolute',
+                  width: p.size,
+                  height: p.size,
+                  borderRadius: '50%',
+                  backgroundColor: p.color,
+                  boxShadow: `0 0 ${p.size * 2}px ${p.color}`,
+                }}
+              />
+            ))}
+          </div>
 
-          50% {
-            opacity: 0.5;
-            transform: translate(-50%, -50%) scale(1.1);
-          }
-        }
-      `}</style>
-    </div>
+          {/* Text Content Overlay */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+            transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+            className="absolute bottom-6 md:bottom-10 z-20 flex flex-col items-center p-6 md:p-8 rounded-2xl backdrop-blur-md"
+            style={{
+              backgroundColor: isDark ? 'rgba(2, 6, 23, 0.4)' : 'rgba(248, 250, 252, 0.5)'
+            }}
+          >
+            <h1 
+              className={`text-sm sm:text-base md:text-lg font-semibold tracking-[0.3em] mb-4 text-center drop-shadow-md ${
+                isDark ? 'text-white' : 'text-slate-900'
+              }`}
+            >
+              ROHHITH GUNASEKARAN
+            </h1>
+
+            <div className="h-6 relative overflow-hidden flex justify-center w-72 mb-10 drop-shadow-sm">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={subtitleIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className={`absolute text-xs md:text-sm font-light tracking-widest ${
+                    isDark ? 'text-slate-300' : 'text-slate-700'
+                  }`}
+                >
+                  {SUBTITLES[subtitleIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+
+            {/* Premium Animated Progress Bar */}
+            <div 
+              className={`w-[220px] h-[3px] relative overflow-hidden rounded-full drop-shadow-lg ${
+                isDark ? 'bg-white/10' : 'bg-slate-300/50'
+              }`}
+            >
+              <motion.div
+                className="absolute left-0 top-0 bottom-0 rounded-full bg-gradient-to-r from-[#3B82F6] via-[#6366F1] to-[#A855F7]"
+                style={{ 
+                  width: `${progress}%`,
+                  boxShadow: isDark ? '0 0 12px rgba(99, 102, 241, 0.6)' : 'none'
+                }}
+              />
+            </div>
+          </motion.div>
+
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

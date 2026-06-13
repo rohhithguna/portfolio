@@ -1,243 +1,195 @@
 import { motion } from 'motion/react';
-import { ThemeContext } from '../App';
-import { useContext, useMemo } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
+import { useContext } from 'react';
 import ReactGA from 'react-ga4';
-import { FileText, Mail } from 'lucide-react';
+import { FileText, Mail, Github, Linkedin, Terminal, Trophy, Layers } from 'lucide-react';
+import HeroVisual from './HeroVisual';
+
 
 function Hero() {
   const { theme } = useContext(ThemeContext);
 
-  const handleResume = () => {
-    ReactGA.event({
-      category: "Resume",
-      action: "View",
-      label: "Resume PDF",
-    });
-    
-    window.open(
-      "https://drive.google.com/file/d/1b7_xr5SbCWuRyOd_We0x1UAxb0btyLfl/view?usp=sharing",
-      "_blank",
-      "noopener,noreferrer"
-    );
-  };
-
   const handleContactScroll = (e) => {
     e.preventDefault();
-    document.getElementById('contact')?.scrollIntoView({ 
+    document.getElementById('contact')?.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
     });
   };
 
-  // Memoize name letters to prevent re-computation
-  const nameLetters = useMemo(() => "Aditya Pillai".split(""), []);
+  const stats = [
+    { label: 'Projects', value: '9+', icon: Terminal },
+    { label: 'Hackathon Finals', value: '2', icon: Trophy },
+    { label: 'Core Focus Areas', value: '4', icon: Layers },
+  ];
 
   return (
     <section
       id="home"
-      className="min-h-[100dvh] flex items-center justify-center px-6 py-20 relative overflow-hidden bg-transparent"
+      className="min-h-[100dvh] flex flex-col items-center justify-center px-6 pt-32 pb-20 relative overflow-hidden"
     >
-      {/* Optimized background blobs - reduced opacity for performance */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            x: [0, 80, 0],
-            y: [0, 40, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className={`absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-[0.15] ${
-            theme === "dark" ? "bg-[#b8f2e6]" : "bg-[#aed9e0]"
-          }`}
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, -60, 0],
-            y: [0, 60, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className={`absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-[0.15] ${
-            theme === "dark" ? "bg-[#b8f2e6]" : "bg-[#aed9e0]"
-          }`}
-        />
+      {/* Base Solid Background for blending */}
+      <div className={`absolute inset-0 transition-colors duration-1000 -z-50 ${theme === 'dark' ? 'bg-[#050B1A]' : 'bg-[#FAFCFF]'}`} />
+
+      {/* Layer 1: Hero artwork image */}
+      <div className="absolute inset-0 -z-40 overflow-hidden pointer-events-none">
+        <HeroVisual theme={theme} />
       </div>
 
-      {/* Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="text-center relative z-10 max-w-5xl mx-auto"
-      >
-        {/* Greeting */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className={`text-base md:text-lg mb-6 font-medium tracking-wide ${
-            theme === "dark" ? "text-[#aed9e0]/70" : "text-[#5e6472]/60"
-          }`}
-        >
-          Hello! I'm
-        </motion.div>
+      {/* Layer 2 removed to allow full brightness of the background artwork */}
 
-        {/* Name - Optimized with reduced animations */}
-        <motion.h1
+      {/* Layer 4: Glow effects (Particles sit at -z-20) */}
+      <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+        {/* Dark Theme Atmospheric Layers */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${theme === 'dark' ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-[#081328] rounded-full blur-[150px] opacity-90 translate-x-1/4 -translate-y-1/4" />
+          <div className="absolute top-1/2 right-0 w-[800px] h-[800px] bg-[rgba(46,196,182,0.12)] rounded-full blur-[120px] opacity-60 translate-x-1/4 -translate-y-1/2" />
+        </div>
+
+        {/* Light Theme Atmospheric Layers */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${theme === 'light' ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-[#60A5FA] rounded-full blur-[150px] opacity-[0.06] translate-x-1/4 -translate-y-1/4" />
+          <div className="absolute top-1/2 left-0 w-[800px] h-[800px] bg-[#8B5CF6] rounded-full blur-[150px] opacity-[0.04] -translate-x-1/4 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-[#6366F1] rounded-full blur-[150px] opacity-[0.05] translate-x-1/4 translate-y-1/4" />
+        </div>
+      </div>
+
+      {/* Seamless transition mask at the bottom of the hero section */}
+      <div className={`absolute bottom-0 left-0 w-full h-32 z-10 transition-colors duration-1000 bg-gradient-to-b pointer-events-none ${theme === 'dark' ? 'from-transparent to-[#0b1120]' : 'from-transparent to-[#f8fafc]'
+        }`} />
+
+      {/* Layer 5: Content */}
+      <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-center mt-16 md:mt-24">
+
+        {/* Main Content Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center mt-8">
+
+          {/* Text Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="lg:col-span-8 flex flex-col items-start text-left"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className={`text-lg md:text-xl mb-4 font-medium tracking-wide ${theme === "dark" ? "text-content/80" : "text-content/70"
+                }`}
+            >
+              Rohhith Gunasekaran
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className={`text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6 ${theme === "dark" ? "text-content" : "text-content"
+                }`}
+            >
+              Architecting secure infrastructure and <span className="text-gradient-premium">distributed intelligence</span>.
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className={`text-lg md:text-xl mb-10 font-light leading-relaxed max-w-2xl ${theme === "dark" ? "text-content/70" : "text-content/70"
+                }`}
+            >
+              Focused on cyber security, distributed systems, and GPU virtualization. Designing resilient architectures for high-performance computing environments.
+            </motion.p>
+
+            {/* CTAs and Socials Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="flex flex-wrap items-center gap-6"
+            >
+              {/* Primary CTA */}
+              <a
+                href="/resume/Rohhith_Gunasekaran_Resume.pdf"
+                download="Rohhith_Gunasekaran_Resume.pdf"
+                onClick={() => {
+                  ReactGA.event({
+                    category: "Resume",
+                    action: "Download",
+                    label: "Resume PDF",
+                  });
+                }}
+                className="group relative px-8 py-3.5 rounded-xl font-semibold text-base md:text-lg transition-all duration-300 inline-flex items-center gap-2 bg-gradient-premium text-white shadow-sm hover:shadow-md hover:scale-[1.02]"
+              >
+                <FileText size={20} />
+                View Resume
+              </a>
+
+              {/* Secondary CTA */}
+              <a
+                href="#contact"
+                onClick={handleContactScroll}
+                className={`px-8 py-3.5 rounded-xl font-semibold text-base md:text-lg transition-all duration-300 inline-flex items-center gap-2 border-2 hover:scale-[1.02] ${theme === "dark"
+                  ? "border-white/20 text-white hover:bg-white/5"
+                  : "border-indigo-500/20 text-black hover:bg-blue-500/5"
+                  }`}
+              >
+                <Mail size={20} />
+                Get In Touch
+              </a>
+
+              {/* Socials */}
+              <div className="flex items-center gap-4 ml-2">
+                <a href="https://github.com/rohhithguna" target="_blank" rel="noreferrer" className="text-content/60 hover:text-accent hover:scale-[1.05] transition-all" aria-label="GitHub Profile">
+                  <Github size={24} />
+                </a>
+                <a href="https://www.linkedin.com/in/rohhith-gunasekaran/" target="_blank" rel="noreferrer" className="text-content/60 hover:text-accent hover:scale-[1.05] transition-all" aria-label="LinkedIn">
+                  <Linkedin size={24} />
+                </a>
+                <a href="mailto:rohhith.gunasekaran@gmail.com" className="text-content/60 hover:text-accent hover:scale-[1.05] transition-all" aria-label="Email">
+                  <Mail size={24} />
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+
+        </div>
+
+        {/* Quick Stats Strip */}
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="relative inline-block group/name mb-8 cursor-default"
+          transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+          className="mt-20 md:mt-32 w-full max-w-4xl mx-auto rounded-2xl p-6 md:p-8"
+          style={{
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            backgroundColor: theme === 'dark' ? 'rgba(7,15,35,0.45)' : 'rgba(255,255,255,0.75)',
+            border: theme === 'dark' ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(99,102,241,0.1)',
+            boxShadow: theme === 'dark' ? 'none' : '0 8px 30px rgba(99,102,241,0.08)',
+          }}
         >
-          <span className={`text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight ${
-            theme === "dark" ? "text-[#b8f2e6]" : "text-[#5e6472]"
-          }`}>
-            {nameLetters.map((char, i) => (
-              <motion.span
-                key={`${char}-${i}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{
-                  delay: 0.4 + i * 0.02,
-                  duration: 0.3
-                }}
-                className="inline-block"
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </span>
-          
-          {/* Center-spreading underline */}
-          <motion.div
-            className={`absolute -bottom-2 left-1/2 h-1 rounded-full ${
-              theme === "dark" ? "bg-[#b8f2e6]" : "bg-[#aed9e0]"
-            }`}
-            initial={{ width: 0, x: 0 }}
-            whileHover={{ 
-              width: "100%",
-              x: "-50%",
-              transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
-            }}
-            style={{ transformOrigin: "center" }}
-          />
-        </motion.h1>
-
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className={`text-xl md:text-2xl lg:text-3xl mb-10 font-light leading-relaxed ${
-            theme === "dark" ? "text-[#aed9e0]/90" : "text-[#5e6472]/80"
-          }`}
-        >
-          Full-Stack Developer & Creative Thinker
-        </motion.p>
-
-        {/* Decorative line */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className={`h-1 w-48 mx-auto rounded-full mb-12 ${
-            theme === "dark" ? "bg-[#b8f2e6]/50" : "bg-[#aed9e0]/60"
-          }`}
-        />
-
-        {/* CTA Buttons - Optimized layout */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col sm:flex-row gap-5 justify-center items-center"
-        >
-          {/* Primary CTA */}
-          <motion.button
-            onClick={handleResume}
-            whileHover={{ y: -4 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.2 }}
-            className={`
-              group relative px-8 py-4 rounded-2xl font-semibold text-base md:text-lg
-              transition-all duration-300 overflow-hidden
-              ${theme === "dark" 
-                ? "bg-[#b8f2e6] text-[#1c1c1c]" 
-                : "bg-[#aed9e0] text-[#5e6472]"
-              }
-              shadow-lg hover:shadow-2xl
-              ${theme === "dark"
-                ? "hover:shadow-[#b8f2e6]/30"
-                : "hover:shadow-[#aed9e0]/40"
-              }
-            `}
-            aria-label="View Resume"
-          >
-            {/* Shine effect */}
-            <motion.div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100"
-              style={{
-                background: theme === "dark"
-                  ? 'linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)'
-                  : 'linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%)'
-              }}
-              animate={{
-                x: ['-100%', '100%'],
-              }}
-              transition={{
-                duration: 0.6,
-                repeat: Infinity,
-                repeatDelay: 2
-              }}
-            />
-            
-            <span className="relative z-10 flex items-center gap-2.5">
-              <FileText size={20} className="flex-shrink-0" />
-              View Resume
-            </span>
-          </motion.button>
-
-          {/* Secondary CTA */}
-          <motion.a
-            href="#contact"
-            onClick={handleContactScroll}
-            whileHover={{ y: -4 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.2 }}
-            className={`
-              group px-8 py-4 rounded-2xl font-semibold text-base md:text-lg
-              transition-all duration-300 border-2
-              ${theme === "dark"
-                ? "border-[#b8f2e6]/40 text-[#b8f2e6] hover:bg-[#b8f2e6]/10 hover:border-[#b8f2e6]"
-                : "border-[#5e6472]/30 text-[#5e6472] hover:bg-[#5e6472]/5 hover:border-[#5e6472]"
-              }
-            `}
-            aria-label="Get In Touch"
-          >
-            <span className="flex items-center gap-2.5">
-              <Mail size={20} className="flex-shrink-0" />
-              Get In Touch
-            </span>
-          </motion.a>
+          <div className="flex flex-wrap justify-center sm:justify-between items-center gap-8">
+            {stats.map((stat, idx) => {
+              const Icon = stat.icon;
+              return (
+                <div key={idx} className="flex flex-col items-center gap-2 text-center group">
+                  <div className={`p-3 rounded-xl transition-colors duration-300 ${theme === 'dark' ? 'bg-white/5 group-hover:bg-accent/20' : 'bg-blue-500/5 group-hover:bg-accent/10'
+                    }`}>
+                    <Icon className={`w-6 h-6 transition-colors duration-300 ${theme === 'dark' ? 'text-white/70 group-hover:text-accent' : 'text-indigo-900/80 group-hover:text-accent'
+                      }`} />
+                  </div>
+                  <div>
+                    <div className="text-2xl md:text-3xl font-bold text-content font-serif">{stat.value}</div>
+                    <div className="text-sm font-medium text-content/60 uppercase tracking-wider mt-1">{stat.label}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </motion.div>
 
-        {/* Scroll indicator - Optimized animation */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.5 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block"
-        >
-        </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

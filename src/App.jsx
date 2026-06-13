@@ -1,5 +1,4 @@
 import React, {
-  createContext,
   useState,
   useEffect,
   useRef,
@@ -12,8 +11,9 @@ import { loadSlim } from '@tsparticles/slim';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero.jsx';
-import Projects from './components/Projects.jsx';
 import Experience from './components/Experience.jsx';
+import Projects from './components/Projects.jsx';
+import Achievements from './components/Achievements.jsx';
 import AboutMe from './components/AboutMe.jsx';
 import Skills from './components/Skills.jsx';
 import Contact from './components/Contact.jsx';
@@ -21,8 +21,7 @@ import SplashLoader from './components/SplashLoader';
 
 import AnalyticsTracker from './components/AnalyticsTracker.jsx';
 import { Analytics } from '@vercel/analytics/react';
-
-export const ThemeContext = createContext();
+import { ThemeContext } from './context/ThemeContext';
 
 function App() {
   const [splashDone, setSplashDone] = useState(false);
@@ -54,107 +53,97 @@ function App() {
   const particlesOptions = useMemo(() => {
     return {
       background: {
-        color: theme === 'dark' ? '#1c1c1c' : '#fafafa',
+        color: {
+          value: 'transparent',
+        },
       },
-
       fpsLimit: 60,
-
+      pauseOnBlur: true,
+      pauseOnOutsideViewport: true,
       particles: {
         number: {
-          value: 80,
+          value: 110, // ~40% reduction for cleaner negative space
           density: {
             enable: true,
-            value_area: 800,
+            area: 1000, // Spread evenly, avoid dense clustering
           },
         },
-
         color: {
-          value: theme === 'dark' ? '#ffffff' : '#000000',
+          value: theme === 'dark' 
+            ? ['#38BDF8', '#3B82F6', '#8B5CF6'] 
+            : ['#2563EB', '#4F46E5', '#8B5CF6'],
         },
-
         shape: {
           type: 'circle',
         },
-
+        shadow: {
+          enable: false, // Glow effect completely removed
+          blur: 0,
+          color: 'transparent',
+          offset: { x: 0, y: 0 }
+        },
         opacity: {
-          value: {
-            min: 0.3,
-            max: 0.6,
-          },
-
-          random: true,
-
+          value: 0.85, // High opacity core (85%)
+          random: false,
           anim: {
-            enable: true,
-            speed: 0.5,
-            opacity_min: 0.1,
-            sync: false,
+            enable: false,
           },
         },
-
         size: {
-          value: {
-            min: 2.5,
-            max: 3,
-          },
-
+          value: { min: 1.0, max: 1.5 }, // Finer micro-particles
           random: true,
-
           anim: {
-            enable: true,
-            speed: 2,
-            size_min: 1,
-            sync: false,
+            enable: false,
           },
         },
-
         links: {
           enable: true,
-          distance: 180,
-          color: theme === 'dark' ? '#00BFFF' : '#1a73e8',
-          opacity: 0.2,
-          width: 1,
+          distance: 160,
+          color: theme === 'dark' ? '#38BDF8' : '#4F46E5',
+          opacity: 0.15, // Reduced line opacity for sharper look
+          width: 1.0, // Sharper, thinner lines
+          triangles: {
+            enable: false,
+          }
         },
-
         move: {
           enable: true,
-          speed: 1,
+          speed: { min: 0.1, max: 0.25 }, // Extremely subtle ambient drifting
           direction: 'none',
           random: true,
           straight: false,
-          out_mode: 'out',
+          outModes: {
+            default: 'out',
+          },
         },
       },
-
       interactivity: {
-        // detectsOn: 'window',
         events: {
           onHover: {
             enable: true,
-            mode: 'grab'
+            mode: ['grab', 'bubble'],
           },
-
           onClick: {
             enable: false,
           },
-
-          resize: {
-            enable: true,
-          },
+          resize: true,
         },
-
         modes: {
           grab: {
-            distance: 150,
-
-            line_linked: {
-              opacity: 0.2,
-              color: '#00BFFF',
+            distance: 180, // Tighter, sharper reach
+            links: {
+              opacity: 0.2, // Sharper, finer hover lines
             },
+          },
+          bubble: {
+            distance: 250,
+            size: 1.5, // Match max size
+            duration: 2,
+            opacity: 1.0, // Max opacity increase 15% (0.85 -> 1.0)
+            mix: false,
           },
         },
       },
-
       detectRetina: true,
     };
   }, [theme]);
@@ -196,6 +185,7 @@ function App() {
       {!splashDone && (
         <SplashLoader
           onAnimationComplete={handleSplashComplete}
+          theme={theme}
         />
       )}
 
@@ -205,10 +195,9 @@ function App() {
           <div
             id="tsparticles"
             ref={particlesContainerRef}
-            className="absolute inset-0 w-full h-full particles-canvas"
+            className="fixed inset-0 w-full h-full particles-canvas pointer-events-none"
             style={{
-              minHeight: '100vh',
-              zIndex: -10,
+              zIndex: -20, // Layer 3: Particles sit between atmosphere (-z-30) and glows (-z-10)
             }}
           />
 
@@ -222,6 +211,7 @@ function App() {
             <Hero />
             <Experience />
             <Projects />
+            <Achievements />
             <AboutMe />
             <Skills />
             <Contact />

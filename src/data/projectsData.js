@@ -1,208 +1,308 @@
 export const projectsData = [
     {
-        id: 'breathe-map',
-        title: 'Breathe Map',
-        shortDescription: 'Smart-city decision support platform for zone-level air quality simulation, GIS visualization, urban pollution analysis, and emission-reduction scenario planning.',
-        fullDescription: 'Breathe Map is a smart-city air quality simulation and decision-support platform designed to help planners analyze pollution patterns at a hyperlocal level. The system enables users to create and manage spatial urban zones, visualize AQI distributions on interactive GIS maps, simulate emission-reduction strategies, and generate analytical reports. The platform combines modern web technologies with lightweight machine learning models to support data-driven urban planning and environmental analysis.',
+        id: 'attack-sim',
+        title: 'AttackSim',
+        shortDescription: 'Simulates real-world attack paths across infrastructure using graph modelling and probabilistic analysis.',
+        fullDescription: 'Engineered a distributed simulation engine to model multi-stage cyber attacks across enterprise networks. Implemented Monte Carlo probabilistic evaluation to predict attack paths, improving risk assessment accuracy by 94%.',
+        type: 'Cyber Security',
+        status: 'Completed',
         tags: [
-            'Next.js',
-            'TypeScript',
-            'Leaflet.js',
-            'TailwindCSS',
-            'Supabase',
-            'PostgreSQL',
+            'Python',
+            'Graph Algorithms',
+            'Monte Carlo Simulation',
+            'Machine Learning',
+            'Next.js'
         ],
         features: [
-            'Interactive GIS-based map with spatial zone creation and editing',
-            'Multi-city workspace architecture with city-specific simulations',
-            'Zone-level AQI visualization using CPCB-aligned color indicators',
-            'Simulation engine for testing emission-reduction strategies',
-            'Machine learning-based AQI estimation and pollution pattern clustering',
-            'Correlation analysis between urban factors and pollution levels',
-            'CSV/PDF report export for environmental planning insights',
-            'Responsive dashboard UI optimized for desktop and mobile'
+            'Attack path computation using graph structures',
+            'Multi-stage attack chain simulation',
+            'Privilege escalation modelling',
+            'Lateral movement simulation',
+            'Exfiltration path analysis',
+            'Monte Carlo probabilistic risk evaluation',
+            'MITRE ATT&CK based threat modelling',
+            'AI-assisted threat prediction'
         ],
-        challenges: [
-            'The initial architecture was tightly coupled to a single city, limiting scalability and long-term extensibility',
-            'Designing intuitive spatial workflows for non-technical users without requiring manual coordinate input',
-            'Rendering and managing dynamic GeoJSON zones interactively while maintaining responsive map performance',
-            'Creating realistic hyperlocal AQI variation using limited proxy and synthetic datasets instead of real sensor networks',
-            'Building a clean and interpretable analytics experience that balances technical environmental insights with user-friendly visualization'
+        metrics: [
+            { label: 'Simulation Scale', value: '10M+ Nodes' },
+            { label: 'Risk Eval Accuracy', value: '94%' }
         ],
-        solutions: [
-            'Refactored the platform into a scalable multi-city workspace architecture with isolated city contexts and zone scoping',
-            'Implemented map-based click-to-place zone creation with automatic polygon generation to simplify spatial interaction UX',
-            'Built optimized Leaflet.js rendering workflows with dynamic GeoJSON layers and contextual zone management',
-            'Developed lightweight ML-assisted estimation and correlation systems using urban proxy features such as traffic, land use, and population density',
-            'Designed an interactive analytics dashboard with correlation analysis, clustering insights, simulation workflows, and exportable planning reports'
-        ],
-        github: 'https://github.com/A23droid/breathe-map',
-        live: 'https://breathe-map-w.vercel.app/',
-        featured: true
+        featured: true,
+        repositoryStats: {
+            stars: 0,
+            forks: 0,
+            lastUpdated: 'Recently'
+        },
+        links: {
+            github: 'https://github.com/rohhithguna/attacksim',
+            demo: null,
+            documentation: null,
+            caseStudy: null
+        }
     },
     {
-        id: 'the-logbook',
-        title: 'The LogBook',
-        shortDescription: 'Developer-focused blogging platform built with Astro featuring Markdown-driven publishing, dynamic routing, optimized static generation, and a polished developer-centric UI.',
-
-        fullDescription: 'The LogBook is a modern technical blogging platform designed to explore content-focused web architecture using Astro. The project emphasizes performance, maintainability, and minimal client-side JavaScript while integrating selective React-based interactivity for an improved reading experience.',
-
-        tags: ['Astro', 'React', 'TailwindCSS', 'Vite', 'Markdown', 'Vercel'],
-
-        features: [
-            'Markdown-powered publishing workflow with Astro Content Collections',
-            'Dynamic blog routing using generated static paths',
-            'Client-side tag filtering with React hydration',
-            'Responsive dark-themed developer-focused UI',
-            'Optimized static site generation with minimal JavaScript',
-            'SEO-friendly architecture with structured metadata'
-        ],
-
-        challenges: [
-            'Resolving deployment-time 404 issues caused by Astro dynamic routes on Vercel',
-            'Balancing Astro’s static-first architecture with interactive React-based filtering',
-            'Maintaining visual consistency between content-heavy blog pages and custom themed UI components',
-            'Managing TailwindCSS v4 integration issues with Astro and custom prose styling',
-            'Ensuring Markdown-rendered content remained readable while preserving the site’s dark green aesthetic'
-        ],
-
-        solutions: [
-            'Implemented static path generation using Astro Content Collections and configured Vercel for proper static route handling',
-            'Used selective React hydration (`client:load`) to add interactivity without sacrificing performance',
-            'Refactored the design system to use green accents selectively while keeping reading surfaces neutral for better UX',
-            'Resolved Tailwind v4 compatibility issues by restructuring global styling and moving prose customization into utility-based classes',
-            'Created a reusable layout and typography system optimized for long-form technical content readability'
-        ],
-
-        github: 'https://github.com/A23droid/the-logbook',
-
-        live: 'https://the-logbook-seven.vercel.app/',
-
-        featured: true
-    },
-    {
-        id: 'eco-classify',
-        title: 'Eco-Classify',
-        shortDescription: 'AI-powered e-waste classification dashboard with reusable React components, interactive model comparison visualizations, dataset filtering, and backend-integrated prediction workflows.',
-        fullDescription: 'Eco-Classify is an AI-powered solution for e-waste management, featuring machine learning models that classify different types of electronic waste. The dashboard provides insights into model performance and enables real-time predictions.',
-        tags: ['React', 'JavaScript', 'TailwindCSS', 'Recharts'],
-        features: [
-            'AI-powered e-waste classification with multiple ML models',
-            'Interactive model comparison with visualization charts',
-            'Real-time prediction workflow with instant results',
-            'Dataset filtering and exploration tools',
-            'Reusable component architecture for scalability',
-            'Detailed model performance metrics and analytics'
-        ],
-        challenges: [
-            'Visualizing complex ML model metrics in an accessible way',
-            'Handling large dataset filtering without performance loss',
-            'Creating an intuitive prediction workflow',
-            'Integrating backend ML services with frontend React app'
-        ],
-        solutions: [
-            'Used Recharts for dynamic, interactive data visualizations',
-            'Implemented virtual scrolling for efficient dataset rendering',
-            'Designed a step-by-step prediction interface with clear feedback',
-            'Built a REST API integration layer with loading states and error handling'
-        ],
-        github: 'https://github.com/A23droid/e-waste-classifier',
-        live: 'https://eco-classify-one.vercel.app/',
-        featured: true
-    }, 
-    {
-        id: 'ship-docs',
-
-        title: 'ShipDocs',
-
-        shortDescription: 'AI-powered README generation platform that analyzes GitHub repositories and automatically produces professional, structured documentation using FastAPI, React, Docker, Azure, and LLMs.',
-
-        fullDescription: 'ShipDocs is a full-stack AI-powered developer productivity platform that transforms GitHub repositories into polished README documentation within seconds. By combining repository structure analysis, GitHub metadata extraction, and large language models, ShipDocs helps developers generate professional project documentation without manually writing README files. The platform features a modern React frontend, FastAPI backend, Dockerized deployment pipeline, and cloud-native hosting using Azure Container Apps.',
-
+        id: 'doc-verify',
+        title: 'DocVerify',
+        shortDescription: 'Provides secure document verification using decentralized storage and cryptographic validation.',
+        fullDescription: 'Designed a high-throughput verification platform addressing document forgery vulnerabilities. Integrated Ethereum smart contracts with IPFS to anchor SHA-256 document fingerprints, enabling decentralized, immutable, and sub-2-second asynchronous validation workflows.',
+        type: 'Blockchain',
+        status: 'Completed',
         tags: [
             'React',
-            'TypeScript',
-            'Python',
-            'Docker',
-            'Azure',
-            'TailwindCSS'
+            'Node.js',
+            'PostgreSQL',
+            'Redis',
+            'Ethereum',
+            'IPFS'
         ],
-
         features: [
-            'AI-generated README creation from public GitHub repositories',
-            'Repository structure analysis using GitHub API integration',
-            'Support for custom project descriptions and additional context',
-            'Markdown preview and editing workflow for generated documentation',
-            'Responsive frontend built with React, TypeScript, and TailwindCSS',
-            'Cloud deployment using Azure Container Apps and Azure Container Registry',
-            'Dockerized backend for consistent local and production environments',
-            'FastAPI-powered REST API architecture for scalable request handling'
+            'SHA-256 document fingerprinting',
+            'Blockchain anchoring',
+            'Ethereum smart contract integration',
+            'IPFS decentralized storage',
+            'Immutable verification records',
+            'Async validation workflows',
+            'Proof-based verification architecture'
         ],
-
-        challenges: [
-            'Designing reliable prompts capable of generating high-quality README files across repositories with vastly different structures',
-            'Extracting meaningful repository context while avoiding unnecessary files and noisy directory information',
-            'Managing frontend-backend integration across local development, Docker containers, and cloud deployments',
-            'Configuring Azure Container Registry, Container Apps, environment variables, and production networking',
-            'Implementing secure API communication and resolving CORS issues between independently deployed frontend and backend services',
-            'Building a deployment workflow that remains reproducible and maintainable for future updates'
+        metrics: [
+            { label: 'Verification Speed', value: '< 2s' },
+            { label: 'Storage Mechanism', value: 'Decentralized' }
         ],
-
-        solutions: [
-            'Developed a repository analysis pipeline that extracts metadata and filtered project structures before AI processing',
-            'Integrated GitHub API lookups with custom preprocessing logic to provide cleaner repository context to the language model',
-            'Containerized the FastAPI backend using Docker and deployed it through Azure Container Registry and Container Apps',
-            'Separated frontend and backend deployment responsibilities using Vercel for frontend hosting and Azure for backend infrastructure',
-            'Implemented environment-based configuration for API endpoints, secrets, and deployment-specific settings',
-            'Configured production-ready CORS policies and cloud environment variables to ensure seamless frontend-backend communication'
-        ],
-
-        github: 'https://github.com/A23droid/ship-docs',
-
-        live: 'https://ship-docs-ai.vercel.app',
-
-        featured: false
+        featured: true,
+        repositoryStats: {
+            stars: 0,
+            forks: 0,
+            lastUpdated: 'Recently'
+        },
+        links: {
+            github: 'https://github.com/rohhithguna/DocVerify',
+            demo: null,
+            documentation: null,
+            caseStudy: null
+        }
     },
     {
-        id: 'budget-buddy',
-
-        title: 'Budget Buddy',
-
-        shortDescription: 'Personal finance tracking web app built with vanilla JavaScript featuring real-time expense management, budgeting insights, persistent local storage, and a clean productivity-focused UI.',
-
-        fullDescription: 'Budget Buddy is a lightweight personal finance management application designed to simplify daily expense tracking and budgeting. Built using core frontend technologies without external frameworks, the project focuses on responsiveness, intuitive user interaction, and efficient state management using browser storage APIs.',
-
-        tags: ['HTML', 'CSS', 'JavaScript', 'LocalStorage'],
-
+        id: 'resil-ai',
+        title: 'ResilAI',
+        shortDescription: 'Simulates infrastructure failures and generates recovery strategies using AI decision systems.',
+        fullDescription: 'Developed an infrastructure resilience testing platform to mitigate single points of failure in distributed architectures. Deployed a hybrid decision engine utilizing large language models to autonomously analyze failure cascades and generate recovery strategies with 120ms latency.',
+        type: 'Artificial Intelligence',
+        status: 'Completed',
+        tags: [
+            'Python',
+            'Simulation Systems',
+            'Large Language Models',
+            'Hugging Face'
+        ],
         features: [
-            'Track income and expenses with real-time balance calculation',
-            'Persistent data storage using browser LocalStorage',
-            'Categorized transaction management for better spending analysis',
-            'Responsive UI optimized for both desktop and mobile devices',
-            'Instant financial summaries including balance, income, and expenses',
-            'Minimal and distraction-free interface focused on usability'
+            'Distributed failure simulation',
+            'Hybrid decision engine',
+            'Infrastructure stress testing',
+            'Recovery planning',
+            'Autonomous response generation',
+            'Resilience optimization'
         ],
-
-        challenges: [
-            'Managing transaction state efficiently without using frontend frameworks',
-            'Preventing inconsistent balance calculations after transaction deletion or edits',
-            'Designing a responsive layout that remained clean even with large transaction histories',
-            'Handling LocalStorage synchronization while keeping the UI reactive',
-            'Creating an intuitive finance dashboard without overwhelming users with unnecessary complexity'
+        metrics: [
+            { label: 'Decision Latency', value: '120ms' },
+            { label: 'Recovery Scenarios', value: '500+' }
         ],
-
-        solutions: [
-            'Implemented modular JavaScript functions to centralize transaction and balance management logic',
-            'Recomputed financial summaries dynamically after every CRUD operation to ensure consistency',
-            'Used flexible CSS layouts and adaptive spacing strategies to maintain readability across screen sizes',
-            'Built a LocalStorage-based persistence layer with automatic rendering during application initialization',
-            'Focused the UI around essential financial metrics and streamlined interactions for faster usability'
+        featured: true,
+        repositoryStats: {
+            stars: 0,
+            forks: 0,
+            lastUpdated: 'Recently'
+        },
+        links: {
+            github: 'https://github.com/rohhithguna/ResiliAI',
+            demo: null,
+            documentation: null,
+            caseStudy: null
+        }
+    },
+    {
+        id: 'peer-link',
+        title: 'PeerLink',
+        shortDescription: 'Decentralized GPU Virtualization & Remote Execution Platform',
+        fullDescription: 'Designed a decentralized compute sharing platform targeting resource underutilization. Engineered containerized execution environments with sub-20ms latency streaming protocols via WebRTC, enabling real-time remote GPU access across distributed networks.',
+        type: 'Distributed Systems',
+        status: 'In Progress',
+        tags: [
+            'Docker',
+            'KVM',
+            'WebRTC',
+            'WebSockets',
+            'FFmpeg',
+            'CUDA'
         ],
-
-        github: 'https://github.com/A23droid/budget-buddy',
-
-        live: 'https://my-budget-buddy-app.netlify.app/',
-
-        featured: false
+        features: [
+            'GPU virtualization',
+            'Resource isolation',
+            'Containerized execution',
+            'Real-time remote execution',
+            'Low latency streaming',
+            'Distributed compute architecture',
+            'Decentralized resource sharing'
+        ],
+        metrics: [
+            { label: 'Latency', value: '< 20ms' },
+            { label: 'Throughput', value: '10 Gbps' }
+        ],
+        featured: false,
+        inProgress: true,
+        repositoryStats: {
+            stars: 0,
+            forks: 0,
+            lastUpdated: 'Recently'
+        },
+        links: {
+            github: null,
+            demo: null,
+            documentation: null,
+            caseStudy: null
+        }
+    },
+    {
+        id: 'gan-ids',
+        title: 'GAN-Based Intrusion Detection System',
+        shortDescription: 'Uses GANs to generate evolving cyber attacks and improve intrusion detection systems.',
+        fullDescription: 'Addressed the limitations of signature-based IDS in detecting novel threats. Trained Generative Adversarial Networks (GANs) using realistic network payloads to generate zero-day attack variations. Implemented a continuous adversarial feedback loop, improving detection accuracy of unknown anomalies to 98.5%.',
+        type: 'Research',
+        status: 'Research',
+        tags: [
+            'Python',
+            'PyTorch',
+            'GANs',
+            'Cyber Security',
+            'Machine Learning'
+        ],
+        features: [
+            'Train GAN models using attack datasets',
+            'Generate realistic attack variations',
+            'Evaluate attacks against IDS systems',
+            'Build a feedback loop between generator and detector',
+            'Improve robustness against unknown threats'
+        ],
+        metrics: [
+            { label: 'Detection Accuracy', value: '98.5%' },
+            { label: 'Research Focus', value: 'Adversarial ML' }
+        ],
+        featured: false,
+        inProgress: true,
+        repositoryStats: {
+            stars: 0,
+            forks: 0,
+            lastUpdated: 'Recently'
+        },
+        links: {
+            github: null,
+            demo: null,
+            documentation: null,
+            caseStudy: null
+        }
+    },
+    {
+        id: 'pack-ai',
+        title: 'PackAI',
+        shortDescription: 'AI-powered package inspection and damage classification system.',
+        fullDescription: 'Built an automated visual inspection pipeline to address high false-positive rates in logistics damage classification. Integrated OpenCV and TensorFlow models to process high-throughput conveyor imagery with minimal latency.',
+        type: 'Computer Vision',
+        status: 'Completed',
+        tags: ['Python', 'OpenCV', 'TensorFlow', 'React'],
+        featured: false,
+        repositoryStats: {
+            stars: 0,
+            forks: 0,
+            lastUpdated: 'Recently'
+        },
+        links: {
+            github: 'https://github.com/rohhithguna/PackAI',
+            demo: null,
+            documentation: null,
+            caseStudy: null
+        }
+    },
+    {
+        id: 'pulse-link',
+        title: 'PulseLink',
+        shortDescription: 'Real-time communication and alert delivery platform.',
+        fullDescription: 'Architected a highly concurrent WebSocket messaging platform capable of broadcasting real-time alerts. Utilized Redis Pub/Sub to scale delivery pipelines across horizontally distributed Node.js instances.',
+        type: 'Distributed Systems',
+        status: 'Completed',
+        tags: ['Node.js', 'WebSockets', 'Redis', 'React'],
+        featured: false,
+        repositoryStats: {
+            stars: 0,
+            forks: 0,
+            lastUpdated: 'Recently'
+        },
+        links: {
+            github: 'https://github.com/rohhithguna/PulseLink',
+            demo: null,
+            documentation: null,
+            caseStudy: null
+        }
+    },
+    {
+        id: 'venture-sim',
+        title: 'VentureSim',
+        shortDescription: 'Decision intelligence platform for startup and business evaluation.',
+        fullDescription: 'Engineered a predictive evaluation model using Scikit-Learn to assess startup viability based on historical market datasets. Deployed a FastAPI backend to serve concurrent classification requests to a data intelligence dashboard.',
+        type: 'Data Science',
+        status: 'Completed',
+        tags: ['Python', 'Pandas', 'Scikit-Learn', 'FastAPI'],
+        featured: false,
+        repositoryStats: {
+            stars: 0,
+            forks: 0,
+            lastUpdated: 'Recently'
+        },
+        links: {
+            github: 'https://github.com/rohhithguna/VentureSim',
+            demo: null,
+            documentation: null,
+            caseStudy: null
+        }
+    },
+    {
+        id: 'macos-web-sim',
+        title: 'macOS Web Simulation',
+        shortDescription: 'Browser-based simulation of macOS user interactions and workflows.',
+        fullDescription: 'Developed a high-fidelity browser emulation of the macOS environment to demonstrate advanced state management and complex UI animations using React and Framer Motion.',
+        type: 'Frontend',
+        status: 'Completed',
+        tags: ['React', 'Framer Motion', 'TailwindCSS'],
+        featured: false,
+        repositoryStats: {
+            stars: 0,
+            forks: 0,
+            lastUpdated: 'Recently'
+        },
+        links: {
+            github: 'https://github.com/rohhithguna/macOS',
+            demo: 'https://rohhithg.github.io',
+            documentation: null,
+            caseStudy: null
+        }
+    },
+    {
+        id: 'zephyx',
+        title: 'Zephyx',
+        shortDescription: 'Role-based issue resolution and tracking platform.',
+        fullDescription: 'Designed a full-stack defect tracking system utilizing Prisma ORM and PostgreSQL. Implemented robust role-based access controls (RBAC) to securely segment issue visibility across varied organizational hierarchies.',
+        type: 'Full Stack',
+        status: 'Completed',
+        tags: ['Next.js', 'Prisma', 'PostgreSQL', 'TypeScript'],
+        featured: false,
+        repositoryStats: {
+            stars: 0,
+            forks: 0,
+            lastUpdated: 'Recently'
+        },
+        links: {
+            github: 'https://github.com/rohhithguna/Zephyx',
+            demo: null,
+            documentation: null,
+            caseStudy: null
+        }
     }
 ];

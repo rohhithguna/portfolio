@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useContext, useEffect } from 'react';
-import { ThemeContext } from '../App';
+import { ThemeContext } from '../context/ThemeContext';
 import { X, ExternalLink, Github, Check } from 'lucide-react';
 
 function ProjectModal({ project, isOpen, onClose }) {
@@ -85,7 +85,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                             </button>
 
                             {/* Content */}
-                            <div className="relative z-10 h-full overflow-y-auto overscroll-contain custom-scrollbar px-6 py-20 md:px-12 md:py-24">
+                            <div className="relative z-10 h-full overflow-y-auto overscroll-contain custom-scrollbar px-6 py-20 md:px-12 md:py-32 md:py-40">
                                 {/* Header */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
