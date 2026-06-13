@@ -94,7 +94,7 @@ Get In Touch
                                 rel={action.href.startsWith('http') ? "noopener noreferrer" : undefined}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className={`flex items-center justify-between p-4 rounded-xl border group transition-all duration-300 ${
+                                className={`flex items-center justify-between p-4 rounded-xl border group transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                                     theme === "dark"
                                         ? "bg-white/5 border-white/5 hover:border-accent/50 hover:bg-white/10"
                                         : "bg-blue-500/5 border-indigo-500/10 hover:border-accent/50 hover:bg-blue-500/10"

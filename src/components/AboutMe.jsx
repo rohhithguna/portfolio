@@ -16,12 +16,12 @@ function AboutMe() {
         { name: 'Infrastructure Engineering', icon: Zap }
     ];
 
-    const researchInterests = [
-        'Intrusion Detection Systems',
-        'GAN-Based Security Research',
-        'Cloud Gaming Infrastructure',
-        'GPU Resource Virtualization',
-        'Distributed Computing'
+    const corePhilosophy = [
+        'Assume Compromise: Design for resilience, not just prevention',
+        'Measure Everything: Telemetry is a first-class citizen',
+        'Minimize Attack Surface: Complexity is the enemy of security',
+        'Optimize for MTTR: Recovery speed beats theoretical uptime',
+        'Decentralize Trust: Verify cryptographically, eliminate single points of failure'
     ];
 
     return (
@@ -135,7 +135,7 @@ Profile & Research
                                 {currentFocus.map((item, idx) => (
                                     <div
                                         key={idx}
-                                        className={`flex flex-col items-center justify-center gap-3 p-4 rounded-xl border transition-all duration-300 hover:border-accent/30 hover:scale-[1.02] ${
+                                        className={`flex flex-col items-center justify-center gap-3 p-4 rounded-xl border transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent/30 hover:scale-[1.02] ${
                                             theme === "dark" ? "bg-surface border-white/5 hover:bg-white/[0.02]" : "bg-surface border-indigo-500/10 hover:bg-blue-500/[0.02]"
                                         }`}
                                     >
@@ -146,7 +146,7 @@ Profile & Research
                             </div>
                         </motion.div>
 
-                        {/* Research Interests */}
+                        {/* Core Philosophy */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -155,17 +155,20 @@ Profile & Research
                         >
                             <h3 className="text-2xl font-bold text-content mb-6 flex items-center gap-3">
                                 <BookOpen className="text-accent" size={24} strokeWidth={1.5} />
-                                Research Interests
+                                Core Engineering Philosophy
                             </h3>
-                            <ul className="space-y-3">
-                                {researchInterests.map((interest, idx) => (
-                                    <li key={idx} className="flex items-center gap-3 group">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-accent/60 group-hover:bg-accent transition-colors flex-shrink-0" />
-                                        <span className="text-content/80 group-hover:text-content transition-colors font-medium">
-                                            {interest}
-                                        </span>
-                                    </li>
-                                ))}
+                            <ul className="space-y-4">
+                                {corePhilosophy.map((philosophy, idx) => {
+                                    const [title, description] = philosophy.split(': ');
+                                    return (
+                                        <li key={idx} className="flex items-start gap-3 group">
+                                            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-accent/60 group-hover:bg-accent transition-colors flex-shrink-0" />
+                                            <span className="text-content/70 group-hover:text-content transition-colors">
+                                                <span className="font-semibold text-content/90">{title}:</span> {description}
+                                            </span>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </motion.div>
 

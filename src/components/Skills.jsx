@@ -84,7 +84,7 @@ Technical Skills
                         <motion.div
                             key={idx}
                             variants={itemVariants}
-                            className={`p-6 rounded-2xl border backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] ${
+                            className={`p-6 rounded-2xl border backdrop-blur-sm transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.01] ${
                                 theme === "dark" 
                                     ? "bg-surface border-white/5 hover:border-accent/30" 
                                     : "bg-surface border-indigo-500/10 hover:border-accent/30"

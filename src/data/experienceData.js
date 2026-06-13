@@ -20,51 +20,51 @@ export const experienceData = [
         id: 'hackup-intern',
         role: 'Cyber Security Intern',
         company: 'Hackup Technology',
-        duration: 'Completed',
+        duration: 'Jan 2024 - Mar 2024',
         location: 'Remote',
-        status: ['Internship', 'Completed'],
-        description: 'Audited enterprise security postures and implemented threat mitigation protocols.',
+        status: ['Intern', 'Completed'],
+        description: 'Audited enterprise security postures and deployed threat mitigation protocols.',
         highlights: [
-            'Executed comprehensive vulnerability assessments across production environments',
-            'Designed hardened network architectures to defend against advanced persistent threats',
-            'Evaluated system perimeters through active and passive reconnaissance',
-            'Formulated automated security auditing pipelines to detect misconfigurations',
-            'Engineered threat mitigation strategies utilizing modern cryptographic standards'
+            'Conducted comprehensive vulnerability assessments across production environments',
+            'Architected hardened network perimeters to defend against advanced persistent threats',
+            'Evaluated system vulnerabilities through active and passive reconnaissance',
+            'Engineered automated security auditing pipelines to detect misconfigurations',
+            'Implemented threat mitigation strategies utilizing modern cryptographic standards'
         ],
         tags: ['Vulnerability Assessment', 'Network Security', 'Reconnaissance', 'Security Auditing', 'Threat Analysis']
     },
     {
         id: 'pdc-cyber-intern',
-        role: 'Cyber Security Winter Internship',
+        role: 'Cyber Security Intern',
         company: 'Project Development Cell (PDC)',
-        duration: 'Completed',
+        duration: 'Dec 2023 - Jan 2024',
         location: 'Vellore, India',
-        status: ['Internship', 'Completed'],
-        description: 'Engineered network traffic analysis tools and real-time security monitoring pipelines.',
+        status: ['Intern', 'Completed'],
+        description: 'Engineered network traffic analysis tooling and real-time security monitoring pipelines.',
         highlights: [
             'Audited complex networking protocols for TCP/IP stack vulnerabilities',
             'Deployed Wireshark for deep packet inspection and anomalous traffic detection',
-            'Developed real-time security monitoring solutions to intercept malicious payloads',
+            'Architected real-time security monitoring solutions to intercept malicious payloads',
             'Performed comprehensive payload dissection and anomaly classification',
-            'Implemented automated traffic capture scripts to assist in forensic investigations'
+            'Engineered automated traffic capture scripts to accelerate forensic investigations'
         ],
         tags: ['Networking', 'TCP/IP', 'Wireshark', 'Packet Analysis', 'Security Monitoring']
     },
     {
         id: 'pdc-data-intern',
-        role: 'Data Science Internship',
+        role: 'Data Science Intern',
         company: 'Project Development Cell (PDC)',
-        duration: 'Completed',
+        duration: 'Aug 2023 - Nov 2023',
         location: 'Vellore, India',
-        status: ['Internship', 'Completed'],
-        description: 'Built large-scale data processing pipelines and implemented statistical modeling architectures.',
+        status: ['Intern', 'Completed'],
+        description: 'Engineered large-scale data processing pipelines and implemented statistical modeling architectures.',
         highlights: [
-            'Developed Python-based data pipelines to process and analyze massive datasets',
-            'Implemented advanced data preprocessing architectures to ensure high data integrity',
+            'Architected Python-based data pipelines to process and analyze massive datasets',
+            'Implemented robust data preprocessing architectures to ensure high integrity',
             'Engineered interactive visualization systems for complex statistical models',
             'Evaluated exploratory data models to identify predictive correlations',
-            'Designed high-throughput ETL workflows utilizing Pandas and custom scripts'
+            'Designed high-throughput ETL workflows utilizing custom parsing algorithms'
         ],
-        tags: ['Data Analysis', 'Python', 'Pandas', 'Visualization', 'Data Preprocessing']
+        tags: ['Data Architecture', 'Python', 'ETL Pipelines', 'Statistical Modeling']
     }
 ];

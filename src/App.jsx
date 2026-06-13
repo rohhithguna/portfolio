@@ -63,10 +63,10 @@ function App() {
       pauseOnOutsideViewport: true,
       particles: {
         number: {
-          value: 110, // ~40% reduction for cleaner negative space
+          value: 80, // Reduced for guaranteed 60fps on mobile
           density: {
             enable: true,
-            area: 1000, // Spread evenly, avoid dense clustering
+            area: 1000,
           },
         },
         color: {

@@ -218,11 +218,11 @@ export const projectsData = [
     {
         id: 'pack-ai',
         title: 'PackAI',
-        shortDescription: 'AI-powered package inspection and damage classification system.',
-        fullDescription: 'Built an automated visual inspection pipeline to address high false-positive rates in logistics damage classification. Integrated OpenCV and TensorFlow models to process high-throughput conveyor imagery with minimal latency.',
+        shortDescription: 'Computer vision pipeline for automated logistics inspection.',
+        fullDescription: 'Architected an automated visual inspection pipeline to eliminate high false-positive rates in logistics damage classification. Integrated OpenCV contour analysis with TensorFlow models to process high-throughput conveyor imagery with sub-100ms latency.',
         type: 'Computer Vision',
         status: 'Completed',
-        tags: ['Python', 'OpenCV', 'TensorFlow', 'React'],
+        tags: ['Python', 'OpenCV', 'TensorFlow', 'Model Inference'],
         featured: false,
         repositoryStats: {
             stars: 0,
@@ -260,11 +260,11 @@ export const projectsData = [
     {
         id: 'venture-sim',
         title: 'VentureSim',
-        shortDescription: 'Decision intelligence platform for startup and business evaluation.',
-        fullDescription: 'Engineered a predictive evaluation model using Scikit-Learn to assess startup viability based on historical market datasets. Deployed a FastAPI backend to serve concurrent classification requests to a data intelligence dashboard.',
+        shortDescription: 'Predictive intelligence platform for enterprise evaluation.',
+        fullDescription: 'Engineered a predictive evaluation model using Scikit-Learn to assess startup viability based on historical market datasets. Deployed a FastAPI microservice backend to serve concurrent classification requests to a data intelligence dashboard.',
         type: 'Data Science',
         status: 'Completed',
-        tags: ['Python', 'Pandas', 'Scikit-Learn', 'FastAPI'],
+        tags: ['Python', 'Data Architecture', 'Scikit-Learn', 'FastAPI'],
         featured: false,
         repositoryStats: {
             stars: 0,
@@ -302,11 +302,11 @@ export const projectsData = [
     {
         id: 'zephyx',
         title: 'Zephyx',
-        shortDescription: 'Role-based issue resolution and tracking platform.',
-        fullDescription: 'Designed a full-stack defect tracking system utilizing Prisma ORM and PostgreSQL. Implemented robust role-based access controls (RBAC) to securely segment issue visibility across varied organizational hierarchies.',
+        shortDescription: 'Enterprise defect tracking system with strict RBAC boundary enforcement.',
+        fullDescription: 'Designed a high-performance defect tracking system utilizing Prisma ORM and PostgreSQL. Implemented robust role-based access controls (RBAC) to securely segment issue visibility across varied organizational hierarchies and departments.',
         type: 'Full Stack',
         status: 'Completed',
-        tags: ['Next.js', 'Prisma', 'PostgreSQL', 'TypeScript'],
+        tags: ['Next.js', 'Prisma', 'PostgreSQL', 'RBAC'],
         featured: false,
         repositoryStats: {
             stars: 0,
