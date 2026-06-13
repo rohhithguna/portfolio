@@ -27,6 +27,11 @@ export const projectsData = [
             { label: 'Simulation Scale', value: '10M+ Nodes' },
             { label: 'Risk Eval Accuracy', value: '94%' }
         ],
+        architecture: [
+            { label: 'Architecture', value: 'Graph Engine · FastAPI · Next.js' },
+            { label: 'Security', value: 'RBAC · MITRE ATT&CK TTPs' },
+            { label: 'Research', value: 'Monte Carlo Probabilistic Modelling' },
+        ],
         featured: true,
         repositoryStats: {
             stars: 0,
@@ -68,6 +73,11 @@ export const projectsData = [
             { label: 'Verification Speed', value: '< 2s' },
             { label: 'Storage Mechanism', value: 'Decentralized' }
         ],
+        architecture: [
+            { label: 'Architecture', value: 'Ethereum · IPFS · Node.js · Redis · PostgreSQL' },
+            { label: 'Security', value: 'SHA-256 Fingerprinting · Immutable Ledger · JWT Auth' },
+            { label: 'Research', value: 'Trustless Verification Systems · Zero-Trust Storage' },
+        ],
         featured: true,
         repositoryStats: {
             stars: 0,
@@ -105,6 +115,11 @@ export const projectsData = [
         metrics: [
             { label: 'Decision Latency', value: '120ms' },
             { label: 'Recovery Scenarios', value: '500+' }
+        ],
+        architecture: [
+            { label: 'Architecture', value: 'Python Sim Engine · LLM Decision Layer · Hugging Face' },
+            { label: 'Reliability', value: 'Circuit Breakers · Sandboxed Execution · Digital Twin' },
+            { label: 'Research', value: 'Autonomous Failure Recovery · Resilience Engineering' },
         ],
         featured: true,
         repositoryStats: {

@@ -18,9 +18,9 @@ function Hero() {
   };
 
   const stats = [
-    { label: 'Projects', value: '9+', icon: Terminal },
+    { label: 'Systems Built', value: '9+', icon: Layers },
     { label: 'Hackathon Finals', value: '2', icon: Trophy },
-    { label: 'Core Focus Areas', value: '4', icon: Layers },
+    { label: 'Research Directions', value: '4', icon: Terminal },
   ];
 
   return (

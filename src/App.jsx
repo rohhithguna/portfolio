@@ -13,6 +13,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero.jsx';
 import Experience from './components/Experience.jsx';
 import Projects from './components/Projects.jsx';
+import TechnicalDeepDives from './components/TechnicalDeepDives.jsx';
 import Achievements from './components/Achievements.jsx';
 import AboutMe from './components/AboutMe.jsx';
 import Skills from './components/Skills.jsx';
@@ -211,6 +212,7 @@ function App() {
             <Hero />
             <Experience />
             <Projects />
+            <TechnicalDeepDives />
             <Achievements />
             <AboutMe />
             <Skills />

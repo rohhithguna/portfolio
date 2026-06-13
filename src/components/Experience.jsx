@@ -57,7 +57,7 @@ Professional Experience
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.2 }}
             className={`absolute left-[11px] md:left-[50%] top-0 bottom-0 w-px ${
-              theme === 'dark' ? 'bg-white/[0.06]' : 'bg-indigo-400/[0.12]'
+              theme === 'dark' ? 'bg-violet-500/30' : 'bg-indigo-400/[0.12]'
             }`}
           />
 

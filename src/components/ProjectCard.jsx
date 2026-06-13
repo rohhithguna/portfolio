@@ -15,6 +15,7 @@ function ProjectCard({ project, onClick, isCompact = false }) {
         status,
         links,
         metrics,
+        architecture,
         image,
         featured,
         repositoryStats
@@ -143,6 +144,24 @@ function ProjectCard({ project, onClick, isCompact = false }) {
                             <span className="flex items-center gap-1.5 hover:text-content transition-colors"><FaStar size={12} className="text-yellow-500" /> {repositoryStats.stars}</span>
                             <span className="flex items-center gap-1.5 hover:text-content transition-colors"><FaCodeBranch size={12} className="text-blue-500" /> {repositoryStats.forks}</span>
                             <span className="flex items-center gap-1.5"><Clock size={12} /> Updated: {repositoryStats.lastUpdated}</span>
+                        </div>
+                    )}
+
+                    {/* Architecture / Security / Research Layer — featured cards only */}
+                    {architecture && architecture.length > 0 && (
+                        <div className={`flex flex-col gap-2 mb-6 p-4 rounded-xl border ${
+                            theme === 'dark'
+                                ? 'bg-white/[0.025] border-white/[0.05]'
+                                : 'bg-indigo-500/[0.03] border-indigo-500/[0.07]'
+                        }`}>
+                            {architecture.map((item, i) => (
+                                <div key={i} className="flex items-start gap-2 text-xs leading-relaxed">
+                                    <span className={`font-bold uppercase tracking-wider flex-shrink-0 pt-px ${
+                                        theme === 'dark' ? 'text-content/40' : 'text-content/40'
+                                    }`} style={{ fontSize: '10px', minWidth: '70px' }}>{item.label}</span>
+                                    <span className={`font-medium ${theme === 'dark' ? 'text-content/75' : 'text-content/80'}`}>{item.value}</span>
+                                </div>
+                            ))}
                         </div>
                     )}
 

@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
-import { Trophy, Code2, ShieldCheck, Cloud, Database, BrainCircuit } from 'lucide-react';
+import { Trophy, Code2, ShieldCheck, Cloud, Database, BrainCircuit, Microscope, Network, Cpu } from 'lucide-react';
 
 function Achievements() {
   const { theme } = useContext(ThemeContext);
@@ -50,6 +50,32 @@ function Achievements() {
       status: 'Planned',
       icon: BrainCircuit,
     }
+  ];
+  const researchList = [
+    {
+      area: 'Adversarial Machine Learning',
+      focus: 'Evaluating the robustness of ML models under GAN-generated attack distributions. Exploring feedback loops between generative adversarial networks and intrusion detection systems.',
+      icon: BrainCircuit,
+      status: 'Active'
+    },
+    {
+      area: 'Infrastructure Resilience Engineering',
+      focus: 'Studying cascade failure patterns in distributed systems. Designing autonomous recovery frameworks that reduce mean time to recovery (MTTR) through LLM-driven decision systems.',
+      icon: Network,
+      status: 'Active'
+    },
+    {
+      area: 'Decentralized Trust Systems',
+      focus: 'Investigating cryptographic approaches to eliminating centralized trust authorities in verification workflows. Exploring smart contract patterns for immutable audit trails.',
+      icon: Cpu,
+      status: 'Exploring'
+    },
+    {
+      area: 'GPU Virtualization & Distributed Compute',
+      focus: 'Researching resource isolation and scheduling algorithms for decentralized GPU sharing networks. Focus on sub-20ms latency remote execution using containerized WebRTC pipelines.',
+      icon: Microscope,
+      status: 'In Progress'
+    },
   ];
 
   const containerVariants = {
@@ -193,6 +219,77 @@ Certifications
                 }`}>
                   {cert.status}
                 </span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Research Subsection — Phase 7 */}
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center mb-16 relative"
+          >
+            <div className="relative inline-block">
+              <div className="absolute inset-0 bg-gradient-pure opacity-10 blur-[120px] rounded-full -z-10" />
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-content relative z-10" style={{ letterSpacing: '-0.02em' }}>
+                Research Interests
+              </h2>
+            </div>
+            <motion.div initial={{ width: 0 }} whileInView={{ width: "6rem" }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} className="h-1 bg-gradient-pure mx-auto rounded-full mb-8" />
+            <p className="text-lg max-w-2xl mx-auto text-content/70 font-light leading-relaxed">
+              Current focus areas and open research directions at the intersection of security, systems, and intelligent automation.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            {researchList.map((item, idx) => (
+              <motion.div
+                key={idx}
+                variants={itemVariants}
+                className={`p-8 rounded-2xl border backdrop-blur-lg transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  theme === "dark"
+                    ? "bg-gradient-to-br from-[#0d1529] to-[#0b1120] border-white/[0.06] hover:border-white/[0.10] hover:shadow-[0_24px_48px_-16px_rgba(0,0,0,0.45)] shadow-md"
+                    : "bg-white/85 border-indigo-500/[0.07] hover:border-indigo-500/[0.14] hover:shadow-[0_16px_40px_-12px_rgba(99,102,241,0.09)] shadow-sm"
+                }`}
+              >
+                <div className="flex flex-col gap-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className={`p-3 rounded-xl flex-shrink-0 ${
+                      theme === "dark"
+                        ? "bg-gradient-to-br from-violet-500/10 via-purple-500/10 to-indigo-500/10 text-violet-400 ring-1 ring-violet-500/10"
+                        : "bg-gradient-to-br from-violet-500/8 via-purple-500/8 to-indigo-500/8 text-violet-600 ring-1 ring-violet-500/10"
+                    }`}>
+                      <item.icon size={22} strokeWidth={1.3} />
+                    </div>
+                    <span className={`px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wider uppercase flex-shrink-0 ${
+                      item.status === 'Active'
+                        ? 'bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20'
+                        : item.status === 'In Progress'
+                        ? 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border border-yellow-500/20'
+                        : 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20'
+                    }`}>
+                      {item.status}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg md:text-xl font-bold text-content mb-3" style={{ letterSpacing: '-0.01em' }}>
+                      {item.area}
+                    </h3>
+                    <p className="text-sm md:text-base text-content/70 leading-relaxed font-light">
+                      {item.focus}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
