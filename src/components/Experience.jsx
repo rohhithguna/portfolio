@@ -25,7 +25,7 @@ function Experience() {
   return (
     <section
       id="experience"
-      className="py-32 md:py-40 px-6 relative bg-transparent"
+      className="py-32 md:py-40 px-6 relative bg-transparent section-ambient"
     >
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Section Header */}
@@ -55,42 +55,42 @@ Professional Experience
             initial={{ height: 0 }}
             whileInView={{ height: "100%" }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2 }}
+            transition={{ duration: 1.2, delay: 0.2 }}
             className={`absolute left-[11px] md:left-[50%] top-0 bottom-0 w-px ${
-              theme === 'dark' ? 'bg-white/10' : 'bg-blue-500/10'
+              theme === 'dark' ? 'bg-white/[0.06]' : 'bg-indigo-400/[0.12]'
             }`}
           />
 
           {/* Experience Items */}
-          <div className="space-y-16">
+          <div className="space-y-20">
             {experienceData.map((exp, index) => {
               const isEven = index % 2 === 0;
 
               return (
                 <motion.article
                   key={exp.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
                   className={`relative flex flex-col md:flex-row items-center ${
                     isEven ? 'md:flex-row-reverse' : ''
                   }`}
                 >
                   {/* Timeline Node */}
-                  <div className={`absolute left-[7px] md:left-[50%] md:-translate-x-1/2 w-[9px] h-[9px] rounded-full ring-4 ring-background bg-gradient-premium z-10 transition-transform duration-300 hover:scale-125`} />
+                  <div className={`absolute left-[7px] md:left-[50%] md:-translate-x-1/2 w-[7px] h-[7px] rounded-full ring-[3px] ring-background bg-gradient-premium z-10`} />
 
                   {/* Spacer for empty side */}
                   <div className="hidden md:block md:w-1/2" />
 
                   {/* Content Card */}
                   <div className={`w-full pl-10 md:pl-0 md:w-1/2 ${
-                    isEven ? 'md:pr-12 lg:pr-16' : 'md:pl-12 lg:pl-16'
+                    isEven ? 'md:pr-14 lg:pr-20' : 'md:pl-14 lg:pl-20'
                   }`}>
-                    <div className={`group relative flex flex-col p-6 md:p-8 rounded-2xl transition-all duration-500 border backdrop-blur-sm ${
+                    <div className={`group relative flex flex-col p-7 md:p-10 rounded-2xl transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] border backdrop-blur-sm ${
                         theme === "dark" 
-                            ? "bg-surface border-white/[0.06] hover:border-white/10 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5),0_0_40px_rgba(99,102,241,0.08)] shadow-md"
-                            : "bg-[rgba(255,255,255,0.75)] border-[rgba(120,120,255,0.08)] hover:border-[rgba(120,120,255,0.15)] hover:shadow-[0_20px_40px_-15px_rgba(99,102,241,0.1),0_0_40px_rgba(99,102,241,0.05)] shadow-sm"
+                            ? "bg-surface border-white/[0.06] hover:border-white/[0.10] hover:shadow-[0_24px_48px_-16px_rgba(0,0,0,0.45)] shadow-md"
+                            : "bg-white/80 border-indigo-500/[0.07] hover:border-indigo-500/[0.14] hover:shadow-[0_16px_40px_-12px_rgba(99,102,241,0.10)] shadow-sm"
                     }`}>
                       
                       {/* Header: Status Badges */}

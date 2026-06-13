@@ -31,7 +31,7 @@ function Projects() {
     };
 
     return (
-        <section id="projects" className="py-32 md:py-40 px-6 relative bg-transparent">
+        <section id="projects" className="py-32 md:py-40 px-6 relative bg-transparent section-ambient">
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Header */}
                 <motion.div
@@ -143,7 +143,7 @@ Engineering Portfolio
                         href="https://github.com/rohhithguna"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 px-8 py-3.5 rounded-xl font-semibold text-base transition-all duration-300 border-2 border-content/20 text-content hover:bg-content/5 hover:-translate-y-1"
+                        className="inline-flex items-center gap-3 px-7 py-3 rounded-xl font-semibold text-base transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] border border-content/[0.15] text-content hover:bg-content/[0.04] hover:border-content/[0.25] hover:scale-[1.01] backdrop-blur-sm"
                     >
                         <span>View GitHub Profile</span>
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

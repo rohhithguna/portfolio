@@ -49,18 +49,18 @@ function ProjectCard({ project, onClick, isCompact = false }) {
             className="group relative h-full cursor-pointer flex flex-col rounded-2xl"
             onClick={onClick}
         >
-            {/* Inner Glassmorphism Card */}
+            {/* Inner Card */}
             <motion.div 
                 variants={{
-                    hover: { y: -6 }
+                    hover: { y: -3 }
                 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className={`relative flex flex-col h-full rounded-2xl backdrop-blur-lg transition-all duration-500 overflow-hidden border ${
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className={`relative flex flex-col h-full rounded-2xl backdrop-blur-lg transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden border ${
                     isCompact ? 'p-5' : 'p-6 md:p-8'
                 } ${
                     theme === "dark" 
-                        ? "bg-[#0b1120]/80 border-white/[0.06] group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5),0_0_40px_rgba(99,102,241,0.08)] group-hover:border-white/10"
-                        : "bg-[rgba(255,255,255,0.75)] border-[rgba(120,120,255,0.08)] group-hover:shadow-[0_20px_40px_-15px_rgba(99,102,241,0.1),0_0_40px_rgba(99,102,241,0.05)] group-hover:border-[rgba(120,120,255,0.15)]"
+                        ? "bg-gradient-to-br from-[#0d1529] to-[#0b1120] border-white/[0.06] group-hover:shadow-[0_24px_48px_-16px_rgba(0,0,0,0.45)] group-hover:border-white/[0.09]"
+                        : "bg-white/85 border-indigo-500/[0.07] group-hover:shadow-[0_16px_40px_-12px_rgba(99,102,241,0.09)] group-hover:border-indigo-500/[0.13]"
                 }`}
             >
                 <div className="relative z-10 flex flex-col h-full flex-grow">
@@ -97,9 +97,9 @@ function ProjectCard({ project, onClick, isCompact = false }) {
                             <motion.img 
                                 src={image} 
                                 alt={title}
-                                className="w-full h-full object-cover transition-all duration-500 brightness-90 group-hover:brightness-105"
+                                className="w-full h-full object-cover transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] brightness-90 group-hover:brightness-102"
                                 variants={{
-                                    hover: { scale: 1.03 }
+                                    hover: { scale: 1.02 }
                                 }}
                             />
                         </div>

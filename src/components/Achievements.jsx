@@ -70,7 +70,7 @@ function Achievements() {
   };
 
   return (
-    <section id="achievements" className="py-32 md:py-40 px-6 relative bg-transparent">
+    <section id="achievements" className="py-32 md:py-40 px-6 relative bg-transparent section-ambient">
       <div className="max-w-6xl mx-auto relative z-10 space-y-32">
         
         {/* Achievements Section */}
@@ -102,31 +102,33 @@ Achievements
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className={`p-8 rounded-2xl border backdrop-blur-lg transition-all duration-500 hover:-translate-y-1 ${
+                className={`p-10 md:p-12 rounded-2xl border backdrop-blur-lg transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   theme === "dark" 
-                    ? "bg-surface border-white/[0.06] hover:border-white/10 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5),0_0_40px_rgba(99,102,241,0.08)] shadow-sm" 
-                    : "bg-[rgba(255,255,255,0.75)] border-[rgba(120,120,255,0.08)] hover:border-[rgba(120,120,255,0.15)] hover:shadow-[0_20px_40px_-15px_rgba(99,102,241,0.1),0_0_40px_rgba(99,102,241,0.05)] shadow-sm"
+                    ? "bg-gradient-to-br from-[#0d1529] to-[#0b1120] border-white/[0.06] hover:border-white/[0.10] hover:shadow-[0_24px_48px_-16px_rgba(0,0,0,0.45)] shadow-md" 
+                    : "bg-white/85 border-indigo-500/[0.07] hover:border-indigo-500/[0.14] hover:shadow-[0_16px_40px_-12px_rgba(99,102,241,0.09)] shadow-sm"
                 }`}
               >
-                <div className="flex flex-col md:flex-row gap-6">
-                  <div className={`p-4 rounded-xl flex-shrink-0 h-fit w-fit ${
-                    theme === "dark" ? "bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-violet-500/10 text-indigo-500" : "bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-violet-500/10 text-indigo-500"
+                <div className="flex flex-col md:flex-row gap-8">
+                  <div className={`p-5 rounded-2xl flex-shrink-0 h-fit w-fit ${
+                    theme === "dark" 
+                      ? "bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-violet-500/10 text-indigo-400 ring-1 ring-indigo-500/10" 
+                      : "bg-gradient-to-br from-blue-500/8 via-indigo-500/8 to-violet-500/8 text-indigo-600 ring-1 ring-indigo-500/10"
                   }`}>
-                    <item.icon size={32} strokeWidth={1.5} />
+                    <item.icon size={36} strokeWidth={1.3} />
                   </div>
-                  <div>
-                    <span className={`inline-block px-2.5 py-1 rounded-lg text-xs font-semibold mb-3 ${
-                      theme === "dark" ? "bg-white/10 text-white/90" : "bg-blue-500/10 text-indigo-950"
+                  <div className="flex flex-col justify-center">
+                    <span className={`inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider uppercase mb-4 w-fit ${
+                      theme === "dark" ? "bg-white/[0.06] text-white/70 border border-white/[0.08]" : "bg-indigo-500/[0.06] text-indigo-700 border border-indigo-500/[0.12]"
                     }`}>
-                      {item.year} • {item.tag}
+                      {item.year} · {item.tag}
                     </span>
-                    <h3 className="text-xl md:text-2xl font-bold mb-2 text-content">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2 text-content tracking-[-0.01em]">
                       {item.title}
                     </h3>
-                    <p className="text-sm font-semibold text-gradient-premium mb-4">
+                    <p className="text-sm font-semibold text-gradient-premium mb-5">
                       {item.organization}
                     </p>
-                    <p className="text-content/80 leading-relaxed font-light text-sm md:text-base">
+                    <p className="text-content/75 leading-relaxed font-light text-sm md:text-base max-w-prose">
                       {item.description}
                     </p>
                   </div>
@@ -165,27 +167,29 @@ Certifications
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className={`flex flex-col items-center text-center p-6 rounded-2xl border backdrop-blur-lg transition-all duration-500 hover:-translate-y-1 ${
+                className={`flex flex-col items-center text-center p-8 rounded-2xl border backdrop-blur-lg transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   theme === "dark" 
-                    ? "bg-surface border-white/[0.06] hover:border-white/10 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5),0_0_40px_rgba(99,102,241,0.08)] shadow-sm" 
-                    : "bg-[rgba(255,255,255,0.75)] border-[rgba(120,120,255,0.08)] hover:border-[rgba(120,120,255,0.15)] hover:shadow-[0_20px_40px_-15px_rgba(99,102,241,0.1),0_0_40px_rgba(99,102,241,0.05)] shadow-sm"
+                    ? "bg-gradient-to-br from-[#0d1529] to-[#0b1120] border-white/[0.06] hover:border-white/[0.10] hover:shadow-[0_24px_48px_-16px_rgba(0,0,0,0.45)] shadow-md" 
+                    : "bg-white/85 border-indigo-500/[0.07] hover:border-indigo-500/[0.14] hover:shadow-[0_16px_40px_-12px_rgba(99,102,241,0.09)] shadow-sm"
                 }`}
               >
-                <div className={`p-4 rounded-full mb-5 ${
-                  theme === "dark" ? "bg-white/5 text-content/80" : "bg-blue-500/5 text-content/80"
+                <div className={`p-4 rounded-2xl mb-6 ${
+                  theme === "dark" 
+                    ? "bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-violet-500/10 text-indigo-400 ring-1 ring-indigo-500/10" 
+                    : "bg-gradient-to-br from-blue-500/8 via-indigo-500/8 to-violet-500/8 text-indigo-600 ring-1 ring-indigo-500/10"
                 }`}>
-                  <cert.icon size={32} strokeWidth={1.5} />
+                  <cert.icon size={28} strokeWidth={1.3} />
                 </div>
-                <h3 className="text-lg font-bold text-content mb-2 leading-snug">
+                <h3 className="text-lg font-bold text-content mb-2 leading-snug tracking-[-0.01em]">
                   {cert.title}
                 </h3>
-                <p className="text-sm font-medium text-gradient-premium mb-6">
+                <p className="text-xs font-semibold text-gradient-premium mb-6 uppercase tracking-wider">
                   {cert.issuer}
                 </p>
-                <span className={`mt-auto px-3 py-1 rounded-full text-xs font-semibold ${
+                <span className={`mt-auto px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide ${
                   cert.status === 'In Progress' 
                     ? "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border border-yellow-500/20"
-                    : "bg-content/5 text-content/60 border border-content/10"
+                    : "bg-content/5 text-content/60 border border-content/[0.08]"
                 }`}>
                   {cert.status}
                 </span>

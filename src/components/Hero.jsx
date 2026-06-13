@@ -107,9 +107,9 @@ function Hero() {
                     label: "Resume PDF",
                   });
                 }}
-                className="group relative px-8 py-3.5 rounded-xl font-semibold text-base md:text-lg transition-all duration-300 inline-flex items-center gap-2 bg-gradient-premium text-white shadow-sm hover:shadow-md hover:scale-[1.02]"
+                className="group relative px-7 py-3 rounded-xl font-semibold text-base transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] inline-flex items-center gap-2 bg-gradient-premium text-white shadow-sm hover:shadow-[0_8px_24px_-8px_rgba(99,102,241,0.4)] hover:scale-[1.01] opacity-90"
               >
-                <FileText size={20} />
+                <FileText size={18} />
                 View Resume
               </a>
 
@@ -117,12 +117,13 @@ function Hero() {
               <a
                 href="#contact"
                 onClick={handleContactScroll}
-                className={`px-8 py-3.5 rounded-xl font-semibold text-base md:text-lg transition-all duration-300 inline-flex items-center gap-2 border-2 hover:scale-[1.02] ${theme === "dark"
-                  ? "border-white/20 text-white hover:bg-white/5"
-                  : "border-indigo-500/20 text-black hover:bg-blue-500/5"
+                className={`px-7 py-3 rounded-xl font-semibold text-base transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] inline-flex items-center gap-2 backdrop-blur-sm hover:scale-[1.01] ${
+                  theme === "dark"
+                    ? "border border-white/[0.15] text-white/90 hover:bg-white/[0.06] hover:border-white/[0.22]"
+                    : "border border-indigo-500/[0.18] text-slate-800 hover:bg-indigo-500/[0.04] hover:border-indigo-500/[0.28]"
                   }`}
               >
-                <Mail size={20} />
+                <Mail size={18} />
                 Get In Touch
               </a>
 
