@@ -100,8 +100,8 @@ function App() {
           enable: true,
           distance: 160,
           color: theme === 'dark' ? '#38BDF8' : '#4F46E5',
-          opacity: 0.15, // Reduced line opacity for sharper look
-          width: 1.0, // Sharper, thinner lines
+          opacity: 0.15, // Reverted to fine, subtle static lines
+          width: 1.0, 
           triangles: {
             enable: false,
           }
@@ -130,9 +130,9 @@ function App() {
         },
         modes: {
           grab: {
-            distance: 180, // Tighter, sharper reach
+            distance: 180, 
             links: {
-              opacity: 0.2, // Sharper, finer hover lines
+              opacity: 0.8, // Increased opacity for thick, clear connection to cursor
             },
           },
           bubble: {

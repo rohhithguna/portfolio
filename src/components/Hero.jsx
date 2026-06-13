@@ -38,20 +38,8 @@ function Hero() {
 
       {/* Layer 2 removed to allow full brightness of the background artwork */}
 
-      {/* Layer 4: Glow effects (Particles sit at -z-20) */}
+      {/* Layer 4: Removed glow effects to keep image perfectly clear */}
       <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
-        {/* Dark Theme Atmospheric Layers */}
-        <div className={`absolute inset-0 transition-opacity duration-1000 ${theme === 'dark' ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-[#081328] rounded-full blur-[150px] opacity-90 translate-x-1/4 -translate-y-1/4" />
-          <div className="absolute top-1/2 right-0 w-[800px] h-[800px] bg-[rgba(46,196,182,0.12)] rounded-full blur-[120px] opacity-60 translate-x-1/4 -translate-y-1/2" />
-        </div>
-
-        {/* Light Theme Atmospheric Layers */}
-        <div className={`absolute inset-0 transition-opacity duration-1000 ${theme === 'light' ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-[#60A5FA] rounded-full blur-[150px] opacity-[0.06] translate-x-1/4 -translate-y-1/4" />
-          <div className="absolute top-1/2 left-0 w-[800px] h-[800px] bg-[#8B5CF6] rounded-full blur-[150px] opacity-[0.04] -translate-x-1/4 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-[#6366F1] rounded-full blur-[150px] opacity-[0.05] translate-x-1/4 translate-y-1/4" />
-        </div>
       </div>
 
       {/* Seamless transition mask at the bottom of the hero section */}
@@ -59,7 +47,7 @@ function Hero() {
         }`} />
 
       {/* Layer 5: Content */}
-      <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-center mt-16 md:mt-24">
+      <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-center">
 
         {/* Main Content Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center mt-8">
@@ -160,14 +148,7 @@ function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-          className="mt-20 md:mt-32 w-full max-w-4xl mx-auto rounded-2xl p-6 md:p-8"
-          style={{
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            backgroundColor: theme === 'dark' ? 'rgba(7,15,35,0.45)' : 'rgba(255,255,255,0.75)',
-            border: theme === 'dark' ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(99,102,241,0.1)',
-            boxShadow: theme === 'dark' ? 'none' : '0 8px 30px rgba(99,102,241,0.08)',
-          }}
+          className="mt-20 md:mt-32 w-full max-w-4xl mx-auto p-4 md:p-6"
         >
           <div className="flex flex-wrap justify-center sm:justify-between items-center gap-8">
             {stats.map((stat, idx) => {
