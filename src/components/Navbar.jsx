@@ -52,7 +52,7 @@ function Navbar() {
 
   const handleNavClick = (e, item) => {
     e.preventDefault();
-    const sectionId = item.toLowerCase();
+    const sectionId = typeof item === 'string' ? item.toLowerCase() : item.id;
     const section = document.getElementById(sectionId);
     if (section) {
       if (isMobileMenuOpen) {
@@ -93,7 +93,7 @@ function Navbar() {
                 <a
                   key={item.id}
                   href={`#${item.id}`}
-                  onClick={(e) => handleNavClick(e, item.label)}
+                  onClick={(e) => handleNavClick(e, item)}
                   className="relative group px-2 py-0.5 rounded-[8px] vision-nav-item flex items-center justify-center"
                 >
                   <span className={`relative z-10 text-[10px] md:text-[11px] font-medium transition-colors duration-400 ${
@@ -234,7 +234,7 @@ function Navbar() {
                     <a
                       key={item.id}
                       href={`#${item.id}`}
-                      onClick={(e) => handleNavClick(e, item.label)}
+                      onClick={(e) => handleNavClick(e, item)}
                       className={`text-base font-medium px-4 py-3 rounded-2xl transition-colors duration-300 relative overflow-hidden ${
                         activeSection === item.id
                           ? 'text-accent bg-accent/10 dark:bg-accent/20'
